@@ -1,0 +1,81 @@
+---
+
+version: "3.7"
+
+services:
+
+  consul-server:
+    image: hashicorp/consul:1.10.2
+    container_name: consul-server
+    command: ["consul", "agent", "-config-file=/config/config.hcl", "-config-dir=/config"]
+    volumes:
+    - "./consul:/config"
+    ports:
+    - 8500:8500
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.2
+
+  web:
+    image: nicholasjackson/fake-service:v0.21.0
+    container_name: web
+    depends_on:
+      - "consul-server"
+    environment:
+      LISTEN_ADDR: 0.0.0.0:9090
+      UPSTREAM_URIS: "http://localhost:9091"
+      MESSAGE: "Web response"
+      NAME: "Web"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.4
+  web_proxy:
+    image: joatmon08/consul-envoy:v1.10.2-v1.18.4
+    container_name: web_proxy
+    depends_on:
+      - "web"
+    environment:
+      CONSUL_HTTP_ADDR: 10.5.0.2:8500
+      CONSUL_GRPC_ADDR: 10.5.0.2:8502
+      SERVICE_CONFIG: /config/web.hcl
+      CENTRAL_CONFIG: "/central_config/web.hcl"
+    volumes:
+    - "./fake-service/service_config:/config"
+    - "./fake-service/central_config:/central_config"
+    command: ["consul", "connect", "envoy", "-sidecar-for", "web-v1"]
+    network_mode: "service:web"
+
+  api:
+    image: nicholasjackson/fake-service:v0.21.0
+    container_name: api
+    depends_on:
+      - "consul-server"
+    environment:
+      LISTEN_ADDR: 0.0.0.0:9090
+      MESSAGE: "API response"
+      NAME: "API"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5
+  api_proxy:
+    image: joatmon08/consul-envoy:v1.10.2-v1.18.4
+    container_name: api_proxy
+    depends_on:
+      - "api"
+    environment:
+      CONSUL_HTTP_ADDR: 10.5.0.2:8500
+      CONSUL_GRPC_ADDR: 10.5.0.2:8502
+      SERVICE_CONFIG: /config/api.hcl
+      CENTRAL_CONFIG: "/central_config/api.hcl"
+    volumes:
+    - "./fake-service/service_config:/config"
+    - "./fake-service/central_config:/central_config"
+    command: ["consul", "connect", "envoy", "-sidecar-for", "api-v1"]
+    network_mode: "service:api"
+
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 10.5.0.0/16

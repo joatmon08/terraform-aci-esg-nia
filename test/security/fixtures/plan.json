@@ -1,0 +1,139 @@
+{
+    "format_version": "0.2",
+    "terraform_version": "1.0.6",
+    "planned_values": {
+        "root_module": {
+            "child_modules": [
+                {
+                    "resources": [
+                        {
+                            "address": "module.esg.aci_endpoint_security_group.this[\"tf-aci-esg-nia-test-api-svc\"]",
+                            "mode": "managed",
+                            "type": "aci_endpoint_security_group",
+                            "name": "this",
+                            "index": "tf-aci-esg-nia-test-api-svc",
+                            "provider_name": "registry.terraform.io/ciscodevnet/aci",
+                            "schema_version": 1,
+                            "values": {
+                                "annotation": "orchestrator:terraform",
+                                "application_profile_dn": "uni/tn-dev_tenant/ap-dev_ap",
+                                "description": "",
+                                "flood_on_encap": "disabled",
+                                "id": "uni/tn-dev_tenant/ap-dev_ap/esg-tf-aci-esg-nia-test-api-svc",
+                                "match_t": "AtleastOne",
+                                "name": "tf-aci-esg-nia-test-api-svc",
+                                "name_alias": "",
+                                "pc_enf_pref": "unenforced",
+                                "pref_gr_memb": "exclude",
+                                "prio": "unspecified",
+                                "relation_fv_rs_cons": [],
+                                "relation_fv_rs_cons_if": [],
+                                "relation_fv_rs_cust_qos_pol": null,
+                                "relation_fv_rs_intra_epg": [],
+                                "relation_fv_rs_prot_by": [],
+                                "relation_fv_rs_prov": [],
+                                "relation_fv_rs_scope": "uni/tn-dev_tenant/ctx-dev_vrf",
+                                "relation_fv_rs_sec_inherited": []
+                            },
+                            "sensitive_values": {
+                                "relation_fv_rs_cons": [],
+                                "relation_fv_rs_cons_if": [],
+                                "relation_fv_rs_intra_epg": [],
+                                "relation_fv_rs_prot_by": [],
+                                "relation_fv_rs_prov": [],
+                                "relation_fv_rs_sec_inherited": []
+                            }
+                        },
+                        {
+                            "address": "module.esg.aci_endpoint_security_group.this[\"tf-aci-esg-nia-test-web-svc\"]",
+                            "mode": "managed",
+                            "type": "aci_endpoint_security_group",
+                            "name": "this",
+                            "index": "tf-aci-esg-nia-test-web-svc",
+                            "provider_name": "registry.terraform.io/ciscodevnet/aci",
+                            "schema_version": 1,
+                            "values": {
+                                "annotation": "orchestrator:terraform",
+                                "application_profile_dn": "uni/tn-dev_tenant/ap-dev_ap",
+                                "description": "",
+                                "flood_on_encap": "disabled",
+                                "id": "uni/tn-dev_tenant/ap-dev_ap/esg-tf-aci-esg-nia-test-web-svc",
+                                "match_t": "AtleastOne",
+                                "name": "tf-aci-esg-nia-test-web-svc",
+                                "name_alias": "",
+                                "pc_enf_pref": "unenforced",
+                                "pref_gr_memb": "exclude",
+                                "prio": "unspecified",
+                                "relation_fv_rs_cons": [],
+                                "relation_fv_rs_cons_if": [],
+                                "relation_fv_rs_cust_qos_pol": null,
+                                "relation_fv_rs_intra_epg": [],
+                                "relation_fv_rs_prot_by": [],
+                                "relation_fv_rs_prov": [],
+                                "relation_fv_rs_scope": "uni/tn-dev_tenant/ctx-dev_vrf",
+                                "relation_fv_rs_sec_inherited": []
+                            },
+                            "sensitive_values": {
+                                "relation_fv_rs_cons": [],
+                                "relation_fv_rs_cons_if": [],
+                                "relation_fv_rs_intra_epg": [],
+                                "relation_fv_rs_prot_by": [],
+                                "relation_fv_rs_prov": [],
+                                "relation_fv_rs_sec_inherited": []
+                            }
+                        },
+                        {
+                            "address": "module.esg.aci_endpoint_security_group_selector.this[\"api\"]",
+                            "mode": "managed",
+                            "type": "aci_endpoint_security_group_selector",
+                            "name": "this",
+                            "index": "api",
+                            "provider_name": "registry.terraform.io/ciscodevnet/aci",
+                            "schema_version": 1,
+                            "values": {
+                                "annotation": "orchestrator:terraform",
+                                "description": "Service instance api on node foobar",
+                                "endpoint_security_group_dn": "uni/tn-dev_tenant/ap-dev_ap/esg-tf-aci-esg-nia-test-api-svc",
+                                "match_expression": "ip=='172.17.0.1'"
+                            },
+                            "sensitive_values": {}
+                        },
+                        {
+                            "address": "module.esg.aci_endpoint_security_group_selector.this[\"web_1\"]",
+                            "mode": "managed",
+                            "type": "aci_endpoint_security_group_selector",
+                            "name": "this",
+                            "index": "web_1",
+                            "provider_name": "registry.terraform.io/ciscodevnet/aci",
+                            "schema_version": 1,
+                            "values": {
+                                "annotation": "orchestrator:terraform",
+                                "description": "Service instance web_1 on node foobar",
+                                "endpoint_security_group_dn": "uni/tn-dev_tenant/ap-dev_ap/esg-tf-aci-esg-nia-test-web-svc",
+                                "match_expression": "ip=='172.17.0.3'"
+                            },
+                            "sensitive_values": {}
+                        },
+                        {
+                            "address": "module.esg.aci_endpoint_security_group_selector.this[\"web_2\"]",
+                            "mode": "managed",
+                            "type": "aci_endpoint_security_group_selector",
+                            "name": "this",
+                            "index": "web_2",
+                            "provider_name": "registry.terraform.io/ciscodevnet/aci",
+                            "schema_version": 1,
+                            "values": {
+                                "annotation": "orchestrator:terraform",
+                                "description": "Service instance web_2 on node foobarbaz",
+                                "endpoint_security_group_dn": "uni/tn-dev_tenant/ap-dev_ap/esg-tf-aci-esg-nia-test-web-svc",
+                                "match_expression": "ip=='172.17.0.3'"
+                            },
+                            "sensitive_values": {}
+                        }
+                    ],
+                    "address": "module.esg"
+                }
+            ]
+        }
+    }
+}
