@@ -24,10 +24,12 @@ buffer_period {
 }
 
 task {
-  name           = "consul-to-aci-esg"
-  description    = "Synchronize services to ESGs"
-  source         = "joatmon08/esg-nia/aci"
-  providers      = ["aci"]
-  services       = ["web", "api"]
-  variable_files = ["/Users/rosemarywang/joatmon08/terraform-aci-esg-nia/example/terraform.tfvars"]
+  name        = "consul-to-aci-esg"
+  description = "Synchronize services to ESGs"
+  source      = "joatmon08/esg-nia/aci"
+  providers   = ["aci"]
+  services    = ["web", "api", "db"]
+  variable_files = [
+    "/Users/rosemarywang/joatmon08/terraform-aci-esg-nia/example/terraform.tfvars"
+  ]
 }

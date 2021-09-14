@@ -73,6 +73,34 @@ services:
     command: ["consul", "connect", "envoy", "-sidecar-for", "api-v1"]
     network_mode: "service:api"
 
+  # db:
+  #   image: nicholasjackson/fake-service:v0.21.0
+  #   container_name: db
+  #   depends_on:
+  #     - "consul-server"
+  #   environment:
+  #     LISTEN_ADDR: 0.0.0.0:9090
+  #     MESSAGE: "DB response"
+  #     NAME: "DB"
+  #   networks:
+  #     vpcbr:
+  #       ipv4_address: 10.5.0.6
+  # db_proxy:
+  #   image: joatmon08/consul-envoy:v1.10.2-v1.18.4
+  #   container_name: db_proxy
+  #   depends_on:
+  #     - "db"
+  #   environment:
+  #     CONSUL_HTTP_ADDR: 10.5.0.2:8500
+  #     CONSUL_GRPC_ADDR: 10.5.0.2:8502
+  #     SERVICE_CONFIG: /config/db.hcl
+  #     CENTRAL_CONFIG: "/central_config/db.hcl"
+  #   volumes:
+  #   - "./fake-service/service_config:/config"
+  #   - "./fake-service/central_config:/central_config"
+  #   command: ["consul", "connect", "envoy", "-sidecar-for", "db-v1"]
+  #   network_mode: "service:db"
+
 networks:
   vpcbr:
     driver: bridge

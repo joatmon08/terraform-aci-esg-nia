@@ -1,3 +1,4 @@
 __pycache__
 sync-tasks/
 terraform
+test/security/fixtures/tfplan
