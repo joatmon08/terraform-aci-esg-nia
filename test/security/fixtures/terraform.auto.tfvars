@@ -1,4 +1,4 @@
-url = "https://sandboxapicdc.cisco.com"
+
 
 services = {
   "api" : {

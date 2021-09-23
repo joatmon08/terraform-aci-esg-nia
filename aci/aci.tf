@@ -3,7 +3,7 @@ locals {
 }
 
 resource "aci_tenant" "dev" {
-  description = "%s"
+  description = "This tenant is created by Terraform"
   name        = "${var.prefix}_tenant"
   annotation  = local.annotation
 }

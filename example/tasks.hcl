@@ -13,8 +13,8 @@ driver "terraform" {
 }
 
 terraform_provider "aci" {
-  username = "admin"
-  url      = "https://sandboxapicdc.cisco.com"
+  url      = "{{ env \"CISCO_ACI_URL\" }}"
+  username = "{{ env \"CISCO_ACI_USER\" }}"
   password = "{{ env \"CISCO_ACI_PASSWORD\" }}"
 }
 
