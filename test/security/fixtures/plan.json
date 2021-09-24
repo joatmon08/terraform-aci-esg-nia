@@ -17,7 +17,9 @@
                             "values": {
                                 "annotation": "orchestrator:terraform",
                                 "application_profile_dn": "uni/tn-dev_tenant/ap-dev_ap",
+                                "flood_on_encap": "disabled",
                                 "name": "tf-aci-esg-nia-test-api-svc",
+                                "prio": "level3",
                                 "relation_fv_rs_cons": [],
                                 "relation_fv_rs_cons_if": [],
                                 "relation_fv_rs_cust_qos_pol": null,
@@ -44,7 +46,9 @@
                             "values": {
                                 "annotation": "orchestrator:terraform",
                                 "application_profile_dn": "uni/tn-dev_tenant/ap-dev_ap",
+                                "flood_on_encap": "disabled",
                                 "name": "tf-aci-esg-nia-test-web-svc",
+                                "prio": "level3",
                                 "relation_fv_rs_cons": [],
                                 "relation_fv_rs_cons_if": [],
                                 "relation_fv_rs_cust_qos_pol": null,
